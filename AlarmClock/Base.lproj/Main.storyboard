@@ -14,22 +14,62 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2E-4n-zBp">
-                                <rect key="frame" x="227" y="383" width="147" height="162"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tomorrow's Alarm Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mG-hC-JlU">
+                                <rect key="frame" x="67" y="73" width="186" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arL-lv-rSj">
+                                <rect key="frame" x="139" y="107" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WGn-1z-Lry">
+                                <rect key="frame" x="143" y="454" width="34" height="30"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitButton:" destination="BYZ-38-t0r" eventType="touchDown" id="VPX-Lk-12K"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Change Tomorrow's Alarm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzm-W1-hT6">
+                                <rect key="frame" x="58" y="254" width="204" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v2E-4n-zBp">
+                                <rect key="frame" x="49" y="290" width="222" height="151"/>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="v2E-4n-zBp" secondAttribute="bottom" constant="55" id="Zot-f8-xQw"/>
-                            <constraint firstItem="v2E-4n-zBp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="211" id="dVr-3A-16K"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="v2E-4n-zBp" secondAttribute="trailing" constant="210" id="yUF-03-NLF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WGn-1z-Lry" secondAttribute="trailing" constant="127" id="62t-wS-77J"/>
+                            <constraint firstItem="jzm-W1-hT6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="42" id="7RM-GJ-V98"/>
+                            <constraint firstItem="6mG-hC-JlU" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="53" id="C5P-e2-95j"/>
+                            <constraint firstItem="arL-lv-rSj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="123" id="Cs1-Z5-5GL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jzm-W1-hT6" secondAttribute="trailing" constant="42" id="Gwt-ID-MnW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6mG-hC-JlU" secondAttribute="trailing" constant="51" id="ILB-1f-Lbw"/>
+                            <constraint firstItem="6mG-hC-JlU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="51" id="TNr-vx-6NN"/>
+                            <constraint firstItem="arL-lv-rSj" firstAttribute="top" secondItem="6mG-hC-JlU" secondAttribute="bottom" constant="13" id="W3w-uV-DIT"/>
+                            <constraint firstItem="v2E-4n-zBp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="33" id="XDE-Yd-BYO"/>
+                            <constraint firstItem="WGn-1z-Lry" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="127" id="jAw-Wv-diF"/>
+                            <constraint firstItem="WGn-1z-Lry" firstAttribute="top" secondItem="v2E-4n-zBp" secondAttribute="bottom" constant="13" id="nqB-jJ-YHZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="v2E-4n-zBp" secondAttribute="trailing" constant="33" id="ue8-Zk-MvP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="arL-lv-rSj" secondAttribute="trailing" constant="123" id="wUe-mb-XNB"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WGn-1z-Lry" secondAttribute="bottom" constant="84" id="y4G-fF-PqK"/>
+                            <constraint firstItem="v2E-4n-zBp" firstAttribute="top" secondItem="jzm-W1-hT6" secondAttribute="bottom" constant="15" id="ywE-RK-Krv"/>
                         </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="hourPicker" destination="v2E-4n-zBp" id="fro-lj-GvR"/>
+                        <outlet property="timePicker" destination="v2E-4n-zBp" id="Yka-RN-0Ho"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
