@@ -41,6 +41,15 @@
     [super viewDidLoad];
     self.timePicker.delegate = self;
     self.timePicker.dataSource = self;
+    PFQuery *query = [PFQuery queryWithClassName:@"AlarmTime"];
+    [query whereKey:@"phone_number" equalTo:@"1234567890"];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *wakeTime, NSError *error) {
+        if (wakeTime) {
+            self.tomorrowAlarmTime.text = [NSString stringWithFormat:@"%@:%@ %@", wakeTime[@"hour"], wakeTime[@"minute"], wakeTime[@"ampm"]];
+        } else if(error) {
+            self.tomorrowAlarmTime.text = @"Not Set Yet";
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
