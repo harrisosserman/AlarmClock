@@ -45,6 +45,10 @@
     self.timePicker.dataSource = self;
     self.friendAlarms.delegate = self;
     self.friendAlarms.dataSource = self;
+    if ([[Digits sharedInstance] session] == nil) {
+        self.tomorrowAlarmTime.text = @"Not Set Yet";
+        return;
+    }
     PFQuery *query = [PFQuery queryWithClassName:@"AlarmTime"];
     [query whereKey:@"phone_number" equalTo:[[[Digits sharedInstance] session] phoneNumber]];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *wakeTime, NSError *error) {
@@ -100,6 +104,9 @@
 
 - (NSArray *)findFriendAlarmTimes {
 //    for now, this just returns all other alarm time objects
+    if ([[Digits sharedInstance] session] == nil) {
+        return nil;
+    }
     __block NSArray *alarmTimes;
     NSError *queryError;
     PFQuery *query = [PFQuery queryWithClassName:@"AlarmTime"];
@@ -160,26 +167,25 @@
     [[Digits sharedInstance] authenticateWithCompletion:^(DGTSession* session, NSError *error) {
         if(session) {
             phoneNumber = session.phoneNumber;
+            PFQuery *query = [PFQuery queryWithClassName:@"AlarmTime"];
+            [query whereKey:@"phone_number" equalTo:phoneNumber];
+            [query getFirstObjectInBackgroundWithBlock:^(PFObject *userWakeTime, NSError *error) {
+                if (userWakeTime) {
+                    [self populateWithSelectedAlarmTime:userWakeTime];
+                    [userWakeTime saveInBackground];
+                } else if(error) {
+                    PFObject *userWakeTime = [PFObject objectWithClassName:@"AlarmTime"];
+                    [self populateWithSelectedAlarmTime:userWakeTime];
+                    userWakeTime[@"phone_number"] = phoneNumber;
+                    [userWakeTime saveInBackground];
+                }
+            }];
+            [self.friendAlarms reloadData];
         } else {
             NSLog(@"there was an error authenticating with digits");
         }
-    }]
-    ;
-    PFQuery *query = [PFQuery queryWithClassName:@"AlarmTime"];
-    [query whereKey:@"phone_number" equalTo:phoneNumber];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *userWakeTime, NSError *error) {
-        if (userWakeTime) {
-            [self populateWithSelectedAlarmTime:userWakeTime];
-            [userWakeTime saveInBackground];
-        } else if(error) {
-            PFObject *userWakeTime = [PFObject objectWithClassName:@"AlarmTime"];
-            [self populateWithSelectedAlarmTime:userWakeTime];
-            userWakeTime[@"phone_number"] = phoneNumber;
-            [userWakeTime saveInBackground];
-        }
     }];
     [self updateTomorrowAlarmTime];
-    
 }
 
 @end
