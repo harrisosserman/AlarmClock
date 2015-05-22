@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSArray *minuteList;
 @property (strong, nonatomic) NSArray *ampmList;
 @property (weak, nonatomic) IBOutlet UILabel *tomorrowAlarmTime;
+@property (weak, nonatomic) IBOutlet UITableView *friendAlarms;
 
 @end
 
@@ -42,6 +43,8 @@
     [super viewDidLoad];
     self.timePicker.delegate = self;
     self.timePicker.dataSource = self;
+    self.friendAlarms.delegate = self;
+    self.friendAlarms.dataSource = self;
     PFQuery *query = [PFQuery queryWithClassName:@"AlarmTime"];
     [query whereKey:@"phone_number" equalTo:[[[Digits sharedInstance] session] phoneNumber]];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *wakeTime, NSError *error) {
@@ -58,13 +61,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-// The number of columns of data
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 3;
 }
 
-// The number of rows of data
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if(component == 0) {
@@ -79,7 +80,6 @@
     return 0;
 }
 
-// The data to return for the row and component (column) that's being passed in
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if(component == 0) {
@@ -96,6 +96,43 @@
 
 -(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     return 50.f;
+}
+
+- (NSArray *)findFriendAlarmTimes {
+//    for now, this just returns all other alarm time objects
+    __block NSArray *alarmTimes;
+    NSError *queryError;
+    PFQuery *query = [PFQuery queryWithClassName:@"AlarmTime"];
+    [query whereKey:@"phone_number" notEqualTo:[[[Digits sharedInstance] session] phoneNumber]];
+    NSArray *wakeTimes = [query findObjects:&queryError];
+    if (wakeTimes) {
+        alarmTimes = wakeTimes;
+    } else if(queryError) {
+        alarmTimes = nil;
+    }
+    return alarmTimes;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"running number of rows in section");
+    NSArray *friendAlarmTimes = [self findFriendAlarmTimes];
+    return (friendAlarmTimes != nil) ? [friendAlarmTimes count] : 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"running cell for row at index path");
+    NSString *friendTableCell = @"friendTableCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:friendTableCell];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:friendTableCell];
+    }
+    NSArray *friendAlarmTimes = [self findFriendAlarmTimes];
+    PFObject *alarmTime = (PFObject *)friendAlarmTimes[indexPath.row];
+    NSString *alarmTimeString = [NSString stringWithFormat:@"%@ %@:%@ %@", alarmTime[@"phone_number"], alarmTime[@"hour"], alarmTime[@"minute"], alarmTime[@"ampm"]];
+    cell.textLabel.text = alarmTimeString;
+    NSLog(@"friend cell text is: ");
+//    NSLog(alarmTimeString);
+    return cell;
 }
 
 -(NSDictionary *)getSelectedAlarmTime {
