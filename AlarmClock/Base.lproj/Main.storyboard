@@ -70,6 +70,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="timePicker" destination="v2E-4n-zBp" id="Yka-RN-0Ho"/>
+                        <outlet property="tomorrowAlarmTime" destination="arL-lv-rSj" id="D0K-oB-N1t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

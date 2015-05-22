@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSArray *hourList;
 @property (strong, nonatomic) NSArray *minuteList;
 @property (strong, nonatomic) NSArray *ampmList;
+@property (weak, nonatomic) IBOutlet UILabel *tomorrowAlarmTime;
 
 @end
 
@@ -86,24 +87,43 @@
 -(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     return 50.f;
 }
+
+-(NSDictionary *)getSelectedAlarmTime {
+    NSMutableDictionary *returnedValues = [[NSMutableDictionary alloc] init];
+    [returnedValues setValue:self.hourList[[self.timePicker selectedRowInComponent:0]] forKey:@"hour"];
+    [returnedValues setValue:self.minuteList[[self.timePicker selectedRowInComponent:1]] forKey:@"minute"];
+    [returnedValues setValue:self.ampmList[[self.timePicker selectedRowInComponent:2]] forKey:@"ampm"];
+    return returnedValues;
+}
+
+-(void)populateWithSelectedAlarmTime:(PFObject *)wakeTime {
+    NSDictionary *selectedAlarm = [self getSelectedAlarmTime];
+    wakeTime[@"hour"] = selectedAlarm[@"hour"];
+    wakeTime[@"minute"] = selectedAlarm[@"minute"];
+    wakeTime[@"ampm"] = selectedAlarm[@"ampm"];
+}
+
+- (void)updateTomorrowAlarmTime {
+    NSDictionary *wakeTime = [self getSelectedAlarmTime];
+    self.tomorrowAlarmTime.text = [NSString stringWithFormat:@"%@:%@ %@", wakeTime[@"hour"], wakeTime[@"minute"], wakeTime[@"ampm"]];
+}
+
 - (IBAction)submitButton:(id)sender {
     PFQuery *query = [PFQuery queryWithClassName:@"AlarmTime"];
     [query whereKey:@"phone_number" equalTo:@"1234567890"];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *userWakeTime, NSError *error) {
         if (userWakeTime) {
-            userWakeTime[@"hour"] = self.hourList[[self.timePicker selectedRowInComponent:0]];
-            userWakeTime[@"minute"] = self.minuteList[[self.timePicker selectedRowInComponent:1]];
-            userWakeTime[@"ampm"] = self.ampmList[[self.timePicker selectedRowInComponent:2]];
+            [self populateWithSelectedAlarmTime:userWakeTime];
             [userWakeTime saveInBackground];
         } else if(error) {
             PFObject *userWakeTime = [PFObject objectWithClassName:@"AlarmTime"];
-            userWakeTime[@"hour"] = self.hourList[[self.timePicker selectedRowInComponent:0]];
-            userWakeTime[@"minute"] = self.minuteList[[self.timePicker selectedRowInComponent:1]];
-            userWakeTime[@"ampm"] = self.ampmList[[self.timePicker selectedRowInComponent:2]];
+            [self populateWithSelectedAlarmTime:userWakeTime];
             userWakeTime[@"phone_number"] = @"1234567890";
             [userWakeTime saveInBackground];
         }
     }];
+    [self updateTomorrowAlarmTime];
+    
 }
 
 @end
