@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import <Parse/Parse.h>
+#import <DigitsKit/DigitsKit.h>
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIPickerView *timePicker;
@@ -42,7 +43,7 @@
     self.timePicker.delegate = self;
     self.timePicker.dataSource = self;
     PFQuery *query = [PFQuery queryWithClassName:@"AlarmTime"];
-    [query whereKey:@"phone_number" equalTo:@"1234567890"];
+    [query whereKey:@"phone_number" equalTo:[[[Digits sharedInstance] session] phoneNumber]];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *wakeTime, NSError *error) {
         if (wakeTime) {
             self.tomorrowAlarmTime.text = [NSString stringWithFormat:@"%@:%@ %@", wakeTime[@"hour"], wakeTime[@"minute"], wakeTime[@"ampm"]];
@@ -118,8 +119,17 @@
 }
 
 - (IBAction)submitButton:(id)sender {
+    __block NSString *phoneNumber = @"";
+    [[Digits sharedInstance] authenticateWithCompletion:^(DGTSession* session, NSError *error) {
+        if(session) {
+            phoneNumber = session.phoneNumber;
+        } else {
+            NSLog(@"there was an error authenticating with digits");
+        }
+    }]
+    ;
     PFQuery *query = [PFQuery queryWithClassName:@"AlarmTime"];
-    [query whereKey:@"phone_number" equalTo:@"1234567890"];
+    [query whereKey:@"phone_number" equalTo:phoneNumber];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *userWakeTime, NSError *error) {
         if (userWakeTime) {
             [self populateWithSelectedAlarmTime:userWakeTime];
@@ -127,7 +137,7 @@
         } else if(error) {
             PFObject *userWakeTime = [PFObject objectWithClassName:@"AlarmTime"];
             [self populateWithSelectedAlarmTime:userWakeTime];
-            userWakeTime[@"phone_number"] = @"1234567890";
+            userWakeTime[@"phone_number"] = phoneNumber;
             [userWakeTime saveInBackground];
         }
     }];

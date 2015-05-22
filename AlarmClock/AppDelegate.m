@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import <Fabric/Fabric.h>
+#import <DigitsKit/DigitsKit.h>
 
 @interface AppDelegate ()
 
@@ -30,7 +32,7 @@
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    // ...
+    [Fabric with:@[DigitsKit]];
     
     return YES;
 }

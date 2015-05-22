@@ -29,6 +29,14 @@
 		B64E7E711B0F841E0032EC45 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64E7E701B0F841E0032EC45 /* SystemConfiguration.framework */; };
 		B64E7E731B0F84270032EC45 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64E7E721B0F84270032EC45 /* libz.dylib */; };
 		B64E7E751B0F84340032EC45 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B64E7E741B0F84340032EC45 /* libsqlite3.dylib */; };
+		B64E7E831B0FADA90032EC45 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64E7E7F1B0FADA90032EC45 /* Fabric.framework */; };
+		B64E7E841B0FADA90032EC45 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64E7E7F1B0FADA90032EC45 /* Fabric.framework */; };
+		B64E7E851B0FADA90032EC45 /* DigitsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64E7E801B0FADA90032EC45 /* DigitsKit.framework */; };
+		B64E7E861B0FADA90032EC45 /* DigitsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64E7E801B0FADA90032EC45 /* DigitsKit.framework */; };
+		B64E7E871B0FADA90032EC45 /* DigitsKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B64E7E811B0FADA90032EC45 /* DigitsKitResources.bundle */; };
+		B64E7E881B0FADA90032EC45 /* DigitsKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B64E7E811B0FADA90032EC45 /* DigitsKitResources.bundle */; };
+		B64E7E891B0FADA90032EC45 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64E7E821B0FADA90032EC45 /* TwitterCore.framework */; };
+		B64E7E8A1B0FADA90032EC45 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64E7E821B0FADA90032EC45 /* TwitterCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +76,10 @@
 		B64E7E701B0F841E0032EC45 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B64E7E721B0F84270032EC45 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B64E7E741B0F84340032EC45 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		B64E7E7F1B0FADA90032EC45 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		B64E7E801B0FADA90032EC45 /* DigitsKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DigitsKit.framework; sourceTree = "<group>"; };
+		B64E7E811B0FADA90032EC45 /* DigitsKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DigitsKitResources.bundle; path = DigitsKit.framework/Versions/A/Resources/DigitsKitResources.bundle; sourceTree = "<group>"; };
+		B64E7E821B0FADA90032EC45 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,10 +94,13 @@
 				B64E7E6D1B0F840F0032EC45 /* Security.framework in Frameworks */,
 				B64E7E6B1B0F83FD0032EC45 /* QuartzCore.framework in Frameworks */,
 				B64E7E691B0F83F60032EC45 /* MobileCoreServices.framework in Frameworks */,
+				B64E7E831B0FADA90032EC45 /* Fabric.framework in Frameworks */,
 				B64E7E671B0F83E70032EC45 /* CoreLocation.framework in Frameworks */,
+				B64E7E851B0FADA90032EC45 /* DigitsKit.framework in Frameworks */,
 				B64E7E651B0F83E00032EC45 /* CoreGraphics.framework in Frameworks */,
 				B64E7E631B0F83DA0032EC45 /* CFNetwork.framework in Frameworks */,
 				B64E7E611B0F83D40032EC45 /* AudioToolbox.framework in Frameworks */,
+				B64E7E891B0FADA90032EC45 /* TwitterCore.framework in Frameworks */,
 				B64E7E5B1B0F83A00032EC45 /* Parse.framework in Frameworks */,
 				B64E7E5E1B0F83B00032EC45 /* Bolts.framework in Frameworks */,
 			);
@@ -95,8 +110,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B64E7E8A1B0FADA90032EC45 /* TwitterCore.framework in Frameworks */,
 				B64E7E5C1B0F83A00032EC45 /* Parse.framework in Frameworks */,
 				B64E7E5F1B0F83B00032EC45 /* Bolts.framework in Frameworks */,
+				B64E7E841B0FADA90032EC45 /* Fabric.framework in Frameworks */,
+				B64E7E861B0FADA90032EC45 /* DigitsKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +124,10 @@
 		B64E7E281B0F750C0032EC45 = {
 			isa = PBXGroup;
 			children = (
+				B64E7E7F1B0FADA90032EC45 /* Fabric.framework */,
+				B64E7E801B0FADA90032EC45 /* DigitsKit.framework */,
+				B64E7E811B0FADA90032EC45 /* DigitsKitResources.bundle */,
+				B64E7E821B0FADA90032EC45 /* TwitterCore.framework */,
 				B64E7E741B0F84340032EC45 /* libsqlite3.dylib */,
 				B64E7E721B0F84270032EC45 /* libz.dylib */,
 				B64E7E701B0F841E0032EC45 /* SystemConfiguration.framework */,
@@ -185,6 +207,7 @@
 				B64E7E2D1B0F750C0032EC45 /* Sources */,
 				B64E7E2E1B0F750C0032EC45 /* Frameworks */,
 				B64E7E2F1B0F750C0032EC45 /* Resources */,
+				B64E7E7E1B0FAD3B0032EC45 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -255,6 +278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B64E7E871B0FADA90032EC45 /* DigitsKitResources.bundle in Resources */,
 				B64E7E401B0F750C0032EC45 /* Main.storyboard in Resources */,
 				B64E7E451B0F750C0032EC45 /* LaunchScreen.xib in Resources */,
 				B64E7E421B0F750C0032EC45 /* Images.xcassets in Resources */,
@@ -265,10 +289,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B64E7E881B0FADA90032EC45 /* DigitsKitResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B64E7E7E1B0FAD3B0032EC45 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 56a3883e9e141b6157f95c6ebed3b2a72b1b4972 f25a32dbe5fe9665af36f5258e4edb0bcd056caea9d990bec8f774afe41bdd7d\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B64E7E2D1B0F750C0032EC45 /* Sources */ = {
