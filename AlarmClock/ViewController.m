@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import <Parse/Parse.h>
 #import <DigitsKit/DigitsKit.h>
+#import "TimePicker.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIPickerView *timePicker;
@@ -17,7 +18,6 @@
 @property (strong, nonatomic) NSArray *ampmList;
 @property (weak, nonatomic) IBOutlet UILabel *tomorrowAlarmTime;
 @property (weak, nonatomic) IBOutlet UITableView *friendAlarms;
-
 @end
 
 @implementation ViewController
@@ -41,8 +41,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.timePicker.delegate = self;
-    self.timePicker.dataSource = self;
+    TimePicker *timePicker = [[TimePicker alloc] initWithHourList:self.hourList andhMinuteList:self.minuteList andAmpmList:self.ampmList];
+    self.timePicker.delegate = timePicker;
+    self.timePicker.dataSource = timePicker;
     self.friendAlarms.delegate = self;
     self.friendAlarms.dataSource = self;
     if ([[Digits sharedInstance] session] == nil) {
@@ -63,43 +64,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 3;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    if(component == 0) {
-        return 12;
-    }
-    else if(component == 1) {
-        return 12;
-    }
-    else if(component == 2) {
-        return 2;
-    }
-    return 0;
-}
-
-- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    if(component == 0) {
-        return self.hourList[row];
-    }
-    else if (component == 1) {
-        return self.minuteList[row];
-        
-    } else if(component == 2) {
-        return self.ampmList[row];
-    }
-    return @"";
-}
-
--(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    return 50.f;
 }
 
 - (NSArray *)findFriendAlarmTimes {
