@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>0F057686-CE11-4A50-8567-972206C7F32B</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>AlarmClock</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>1E957045DFB06C622207835BED94D106690A581E</key>
 		<string>github.com:harrisosserman/AlarmClock.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>AlarmClock.xcodeproj/project.xcworkspace</string>
+	<string>AlarmClock.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>1E957045DFB06C622207835BED94D106690A581E</key>

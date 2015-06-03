@@ -39,6 +39,8 @@
 		B64E7E881B0FADA90032EC45 /* DigitsKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B64E7E811B0FADA90032EC45 /* DigitsKitResources.bundle */; };
 		B64E7E891B0FADA90032EC45 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64E7E821B0FADA90032EC45 /* TwitterCore.framework */; };
 		B64E7E8A1B0FADA90032EC45 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64E7E821B0FADA90032EC45 /* TwitterCore.framework */; };
+		B66130A81B1F683E00FD85C0 /* AddFriends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B66130A71B1F683E00FD85C0 /* AddFriends.storyboard */; };
+		B66130AB1B1F68FD00FD85C0 /* AddFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B66130AA1B1F68FD00FD85C0 /* AddFriendsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,9 @@
 		B64E7E801B0FADA90032EC45 /* DigitsKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DigitsKit.framework; sourceTree = "<group>"; };
 		B64E7E811B0FADA90032EC45 /* DigitsKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DigitsKitResources.bundle; path = DigitsKit.framework/Versions/A/Resources/DigitsKitResources.bundle; sourceTree = "<group>"; };
 		B64E7E821B0FADA90032EC45 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
+		B66130A71B1F683E00FD85C0 /* AddFriends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddFriends.storyboard; sourceTree = "<group>"; };
+		B66130A91B1F68FD00FD85C0 /* AddFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsViewController.h; sourceTree = "<group>"; };
+		B66130AA1B1F68FD00FD85C0 /* AddFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +182,9 @@
 				B62775BB1B1EC7B20052211A /* TimePicker.m */,
 				B62775C01B1ED6AF0052211A /* FriendList.h */,
 				B62775C11B1ED6AF0052211A /* FriendList.m */,
+				B66130A71B1F683E00FD85C0 /* AddFriends.storyboard */,
+				B66130A91B1F68FD00FD85C0 /* AddFriendsViewController.h */,
+				B66130AA1B1F68FD00FD85C0 /* AddFriendsViewController.m */,
 			);
 			path = AlarmClock;
 			sourceTree = "<group>";
@@ -291,6 +299,7 @@
 				B64E7E871B0FADA90032EC45 /* DigitsKitResources.bundle in Resources */,
 				B64E7E401B0F750C0032EC45 /* Main.storyboard in Resources */,
 				B64E7E451B0F750C0032EC45 /* LaunchScreen.xib in Resources */,
+				B66130A81B1F683E00FD85C0 /* AddFriends.storyboard in Resources */,
 				B64E7E421B0F750C0032EC45 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +339,7 @@
 				B64E7E3D1B0F750C0032EC45 /* ViewController.m in Sources */,
 				B64E7E3A1B0F750C0032EC45 /* AppDelegate.m in Sources */,
 				B62775C21B1ED6AF0052211A /* FriendList.m in Sources */,
+				B66130AB1B1F68FD00FD85C0 /* AddFriendsViewController.m in Sources */,
 				B64E7E371B0F750C0032EC45 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

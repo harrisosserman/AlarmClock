@@ -50,11 +50,21 @@
                                     <action selector="submitButton:" destination="BYZ-38-t0r" eventType="touchDown" id="VPX-Lk-12K"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fas-Vg-XAn">
+                                <rect key="frame" x="115" y="538" width="96" height="30"/>
+                                <state key="normal" title="Add Friends">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addFriends:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pff-4r-UqA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="addFriendsButton" destination="Fas-Vg-XAn" id="Rhg-2s-HLm"/>
                         <outlet property="friendAlarms" destination="hBx-bY-Xvo" id="oaR-dv-16H"/>
                         <outlet property="timePicker" destination="v2E-4n-zBp" id="Yka-RN-0Ho"/>
                         <outlet property="tomorrowAlarmTime" destination="arL-lv-rSj" id="D0K-oB-N1t"/>
