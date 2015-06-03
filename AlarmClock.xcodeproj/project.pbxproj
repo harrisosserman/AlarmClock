@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B62775BC1B1EC7B20052211A /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B62775BB1B1EC7B20052211A /* TimePicker.m */; };
 		B64E7E371B0F750C0032EC45 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B64E7E361B0F750C0032EC45 /* main.m */; };
 		B64E7E3A1B0F750C0032EC45 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B64E7E391B0F750C0032EC45 /* AppDelegate.m */; };
 		B64E7E3D1B0F750C0032EC45 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B64E7E3C1B0F750C0032EC45 /* ViewController.m */; };
@@ -50,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B62775BA1B1EC7B20052211A /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
+		B62775BB1B1EC7B20052211A /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
 		B64E7E311B0F750C0032EC45 /* AlarmClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B64E7E351B0F750C0032EC45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B64E7E361B0F750C0032EC45 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 				B64E7E411B0F750C0032EC45 /* Images.xcassets */,
 				B64E7E431B0F750C0032EC45 /* LaunchScreen.xib */,
 				B64E7E341B0F750C0032EC45 /* Supporting Files */,
+				B62775BA1B1EC7B20052211A /* TimePicker.h */,
+				B62775BB1B1EC7B20052211A /* TimePicker.m */,
 			);
 			path = AlarmClock;
 			sourceTree = "<group>";
@@ -316,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B62775BC1B1EC7B20052211A /* TimePicker.m in Sources */,
 				B64E7E3D1B0F750C0032EC45 /* ViewController.m in Sources */,
 				B64E7E3A1B0F750C0032EC45 /* AppDelegate.m in Sources */,
 				B64E7E371B0F750C0032EC45 /* main.m in Sources */,
@@ -525,6 +531,7 @@
 				B64E7E561B0F750C0032EC45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B64E7E571B0F750C0032EC45 /* Build configuration list for PBXNativeTarget "AlarmClockTests" */ = {
 			isa = XCConfigurationList;
@@ -533,6 +540,7 @@
 				B64E7E591B0F750C0032EC45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

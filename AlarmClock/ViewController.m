@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import <Parse/Parse.h>
 #import <DigitsKit/DigitsKit.h>
+#import "TimePicker.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIPickerView *timePicker;
@@ -17,7 +18,7 @@
 @property (strong, nonatomic) NSArray *ampmList;
 @property (weak, nonatomic) IBOutlet UILabel *tomorrowAlarmTime;
 @property (weak, nonatomic) IBOutlet UITableView *friendAlarms;
-
+@property (strong, nonatomic) TimePicker *timePickerDelegate;
 @end
 
 @implementation ViewController
@@ -28,6 +29,7 @@
         self.hourList = [[NSArray alloc] initWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", nil];
         self.minuteList = [[NSArray alloc] initWithObjects:@"00", @"05", @"10", @"15", @"20", @"25", @"30", @"35", @"40", @"45", @"50", @"55", nil];
         self.ampmList = [[NSArray alloc] initWithObjects:@"AM", @"PM", nil];
+        self.timePickerDelegate = [[TimePicker alloc] initWithHourList:self.hourList andhMinuteList:self.minuteList andAmpmList:self.ampmList];
     }
     return self;
 }
@@ -41,8 +43,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.timePicker.delegate = self;
-    self.timePicker.dataSource = self;
+    self.timePicker.delegate = self.timePickerDelegate;
+    self.timePicker.dataSource = self.timePickerDelegate;
     self.friendAlarms.delegate = self;
     self.friendAlarms.dataSource = self;
     if ([[Digits sharedInstance] session] == nil) {
@@ -65,43 +67,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 3;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    if(component == 0) {
-        return 12;
-    }
-    else if(component == 1) {
-        return 12;
-    }
-    else if(component == 2) {
-        return 2;
-    }
-    return 0;
-}
-
-- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    if(component == 0) {
-        return self.hourList[row];
-    }
-    else if (component == 1) {
-        return self.minuteList[row];
-        
-    } else if(component == 2) {
-        return self.ampmList[row];
-    }
-    return @"";
-}
-
--(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    return 50.f;
-}
-
 - (NSArray *)findFriendAlarmTimes {
 //    for now, this just returns all other alarm time objects
     if ([[Digits sharedInstance] session] == nil) {
@@ -121,13 +86,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"running number of rows in section");
     NSArray *friendAlarmTimes = [self findFriendAlarmTimes];
     return (friendAlarmTimes != nil) ? [friendAlarmTimes count] : 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"running cell for row at index path");
     NSString *friendTableCell = @"friendTableCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:friendTableCell];
     if (cell == nil) {
@@ -137,8 +100,6 @@
     PFObject *alarmTime = (PFObject *)friendAlarmTimes[indexPath.row];
     NSString *alarmTimeString = [NSString stringWithFormat:@"%@ %@:%@ %@", alarmTime[@"phone_number"], alarmTime[@"hour"], alarmTime[@"minute"], alarmTime[@"ampm"]];
     cell.textLabel.text = alarmTimeString;
-    NSLog(@"friend cell text is: ");
-//    NSLog(alarmTimeString);
     return cell;
 }
 
