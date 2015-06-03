@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B62775BC1B1EC7B20052211A /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B62775BB1B1EC7B20052211A /* TimePicker.m */; };
+		B62775C21B1ED6AF0052211A /* FriendList.m in Sources */ = {isa = PBXBuildFile; fileRef = B62775C11B1ED6AF0052211A /* FriendList.m */; };
 		B64E7E371B0F750C0032EC45 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B64E7E361B0F750C0032EC45 /* main.m */; };
 		B64E7E3A1B0F750C0032EC45 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B64E7E391B0F750C0032EC45 /* AppDelegate.m */; };
 		B64E7E3D1B0F750C0032EC45 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B64E7E3C1B0F750C0032EC45 /* ViewController.m */; };
@@ -53,6 +54,8 @@
 /* Begin PBXFileReference section */
 		B62775BA1B1EC7B20052211A /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
 		B62775BB1B1EC7B20052211A /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
+		B62775C01B1ED6AF0052211A /* FriendList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendList.h; sourceTree = "<group>"; };
+		B62775C11B1ED6AF0052211A /* FriendList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendList.m; sourceTree = "<group>"; };
 		B64E7E311B0F750C0032EC45 /* AlarmClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B64E7E351B0F750C0032EC45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B64E7E361B0F750C0032EC45 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 				B64E7E341B0F750C0032EC45 /* Supporting Files */,
 				B62775BA1B1EC7B20052211A /* TimePicker.h */,
 				B62775BB1B1EC7B20052211A /* TimePicker.m */,
+				B62775C01B1ED6AF0052211A /* FriendList.h */,
+				B62775C11B1ED6AF0052211A /* FriendList.m */,
 			);
 			path = AlarmClock;
 			sourceTree = "<group>";
@@ -324,6 +329,7 @@
 				B62775BC1B1EC7B20052211A /* TimePicker.m in Sources */,
 				B64E7E3D1B0F750C0032EC45 /* ViewController.m in Sources */,
 				B64E7E3A1B0F750C0032EC45 /* AppDelegate.m in Sources */,
+				B62775C21B1ED6AF0052211A /* FriendList.m in Sources */,
 				B64E7E371B0F750C0032EC45 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

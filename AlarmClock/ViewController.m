@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import <DigitsKit/DigitsKit.h>
 #import "TimePicker.h"
+#import "FriendList.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIPickerView *timePicker;
@@ -19,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *tomorrowAlarmTime;
 @property (weak, nonatomic) IBOutlet UITableView *friendAlarms;
 @property (strong, nonatomic) TimePicker *timePickerDelegate;
+@property (strong, nonatomic) FriendList *friendListDelegate;
+
 @end
 
 @implementation ViewController
@@ -30,6 +33,7 @@
         self.minuteList = [[NSArray alloc] initWithObjects:@"00", @"05", @"10", @"15", @"20", @"25", @"30", @"35", @"40", @"45", @"50", @"55", nil];
         self.ampmList = [[NSArray alloc] initWithObjects:@"AM", @"PM", nil];
         self.timePickerDelegate = [[TimePicker alloc] initWithHourList:self.hourList andhMinuteList:self.minuteList andAmpmList:self.ampmList];
+        self.friendListDelegate = [[FriendList alloc] init];
     }
     return self;
 }
@@ -45,8 +49,8 @@
     [super viewDidLoad];
     self.timePicker.delegate = self.timePickerDelegate;
     self.timePicker.dataSource = self.timePickerDelegate;
-    self.friendAlarms.delegate = self;
-    self.friendAlarms.dataSource = self;
+    self.friendAlarms.delegate = self.friendListDelegate;
+    self.friendAlarms.dataSource = self.friendListDelegate;
     if ([[Digits sharedInstance] session] == nil) {
         self.tomorrowAlarmTime.text = @"Not Set Yet";
         return;
@@ -65,42 +69,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (NSArray *)findFriendAlarmTimes {
-//    for now, this just returns all other alarm time objects
-    if ([[Digits sharedInstance] session] == nil) {
-        return nil;
-    }
-    __block NSArray *alarmTimes;
-    NSError *queryError;
-    PFQuery *query = [PFQuery queryWithClassName:@"AlarmTime"];
-    [query whereKey:@"phone_number" notEqualTo:[[[Digits sharedInstance] session] phoneNumber]];
-    NSArray *wakeTimes = [query findObjects:&queryError];
-    if (wakeTimes) {
-        alarmTimes = wakeTimes;
-    } else if(queryError) {
-        alarmTimes = nil;
-    }
-    return alarmTimes;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSArray *friendAlarmTimes = [self findFriendAlarmTimes];
-    return (friendAlarmTimes != nil) ? [friendAlarmTimes count] : 0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *friendTableCell = @"friendTableCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:friendTableCell];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:friendTableCell];
-    }
-    NSArray *friendAlarmTimes = [self findFriendAlarmTimes];
-    PFObject *alarmTime = (PFObject *)friendAlarmTimes[indexPath.row];
-    NSString *alarmTimeString = [NSString stringWithFormat:@"%@ %@:%@ %@", alarmTime[@"phone_number"], alarmTime[@"hour"], alarmTime[@"minute"], alarmTime[@"ampm"]];
-    cell.textLabel.text = alarmTimeString;
-    return cell;
 }
 
 -(NSDictionary *)getSelectedAlarmTime {
