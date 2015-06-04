@@ -12,6 +12,7 @@
 #import "TimePicker.h"
 #import "FriendList.h"
 #import "AddFriendsViewController.h"
+#import "Helpers.h"
 
 @interface AlarmViewController ()
 @property (weak, nonatomic) IBOutlet UIPickerView *timePicker;
@@ -46,8 +47,6 @@
     CGRect pickerFrame = self.timePicker.frame;
     pickerFrame.size.width = 150.f;
     [self.timePicker setFrame:pickerFrame];
-//    self.navigationController = [[UINavigationController alloc] initWithRootViewController:self];
-//    [self presentViewController:self.navigationController animated:NO completion:nil];
 }
 
 - (void)viewDidLoad {
@@ -100,6 +99,7 @@
     __block NSString *phoneNumber = @"";
     [[Digits sharedInstance] authenticateWithCompletion:^(DGTSession* session, NSError *error) {
         if(session) {
+            [Helpers saveUserWithPhoneNumber:session.phoneNumber andUserID:session.userID];
             phoneNumber = session.phoneNumber;
             PFQuery *query = [PFQuery queryWithClassName:@"AlarmTime"];
             [query whereKey:@"phone_number" equalTo:phoneNumber];

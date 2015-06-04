@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B62775BC1B1EC7B20052211A /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B62775BB1B1EC7B20052211A /* TimePicker.m */; };
 		B62775C21B1ED6AF0052211A /* FriendList.m in Sources */ = {isa = PBXBuildFile; fileRef = B62775C11B1ED6AF0052211A /* FriendList.m */; };
+		B642ADDE1B210E45002F18E1 /* Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = B642ADDD1B210E45002F18E1 /* Helpers.m */; };
 		B64E7E371B0F750C0032EC45 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B64E7E361B0F750C0032EC45 /* main.m */; };
 		B64E7E3A1B0F750C0032EC45 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B64E7E391B0F750C0032EC45 /* AppDelegate.m */; };
 		B64E7E3D1B0F750C0032EC45 /* AlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B64E7E3C1B0F750C0032EC45 /* AlarmViewController.m */; };
@@ -57,6 +58,8 @@
 		B62775BB1B1EC7B20052211A /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
 		B62775C01B1ED6AF0052211A /* FriendList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendList.h; sourceTree = "<group>"; };
 		B62775C11B1ED6AF0052211A /* FriendList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendList.m; sourceTree = "<group>"; };
+		B642ADDC1B210E45002F18E1 /* Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helpers.h; sourceTree = "<group>"; };
+		B642ADDD1B210E45002F18E1 /* Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helpers.m; sourceTree = "<group>"; };
 		B64E7E311B0F750C0032EC45 /* AlarmClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B64E7E351B0F750C0032EC45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B64E7E361B0F750C0032EC45 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -166,6 +169,8 @@
 				B62775C11B1ED6AF0052211A /* FriendList.m */,
 				B66130A91B1F68FD00FD85C0 /* AddFriendsViewController.h */,
 				B66130AA1B1F68FD00FD85C0 /* AddFriendsViewController.m */,
+				B642ADDC1B210E45002F18E1 /* Helpers.h */,
+				B642ADDD1B210E45002F18E1 /* Helpers.m */,
 			);
 			path = AlarmClock;
 			sourceTree = "<group>";
@@ -343,6 +348,7 @@
 				B64E7E3D1B0F750C0032EC45 /* AlarmViewController.m in Sources */,
 				B64E7E3A1B0F750C0032EC45 /* AppDelegate.m in Sources */,
 				B62775C21B1ED6AF0052211A /* FriendList.m in Sources */,
+				B642ADDE1B210E45002F18E1 /* Helpers.m in Sources */,
 				B66130AB1B1F68FD00FD85C0 /* AddFriendsViewController.m in Sources */,
 				B64E7E371B0F750C0032EC45 /* main.m in Sources */,
 			);

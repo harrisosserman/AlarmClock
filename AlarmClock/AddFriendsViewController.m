@@ -7,18 +7,26 @@
 //
 
 #import "AddFriendsViewController.h"
+#import "Helpers.h"
+#import <Parse/Parse.h>
 
 @implementation AddFriendsViewController
 
 - (void)viewDidLoad {
-    DGTSession *userSession = [Digits sharedInstance].session;
-    DGTContacts *contacts = [[DGTContacts alloc] initWithUserSession:userSession];
-    
-    [contacts startContactsUploadWithCompletion:^(DGTContactsUploadResult *result, NSError *error) {
+    [[Digits sharedInstance] authenticateWithCompletion:^(DGTSession* session, NSError *error) {
         if (error) {
-            [self showPopup:[error description] withTitle:@"Error with contacts upload"];
+            [self showPopup:[error description] withTitle:@"Error logging in"];
         } else {
-            [self findContactMatches];
+            [Helpers saveUserWithPhoneNumber:session.phoneNumber andUserID:session.userID];
+            DGTSession *userSession = [Digits sharedInstance].session;
+            DGTContacts *contacts = [[DGTContacts alloc] initWithUserSession:userSession];
+            [contacts startContactsUploadWithCompletion:^(DGTContactsUploadResult *result, NSError *error) {
+                if (error) {
+                    [self showPopup:[error description] withTitle:@"Error with contacts upload"];
+                } else {
+                    [self findContactMatches];
+                }
+            }];
         }
     }];
 }
@@ -32,6 +40,8 @@
             [self showPopup:[error description] withTitle:@"Find friends error"];
         } else if ([matches count] == 0) {
             [self showPopup:@"You have no contacts using this app :(" withTitle:@"No contacts found"];
+        } else {
+            [self populatePotentialFriendsTableWithContacts:matches];
         }
     }];
 }
@@ -43,6 +53,19 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
+}
+
+- (void)populatePotentialFriendsTableWithContacts:(NSArray *)contacts {
+    PFQuery *query = [PFQuery queryWithClassName:@"User"];
+    [query whereKey:@"UserID" containedIn:contacts];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            [self showPopup:[error description] withTitle:@"Error querying potential friends"];
+        } else {
+            
+        }
+        
+    }];
 }
 
 @end
