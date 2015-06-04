@@ -56,8 +56,9 @@
 }
 
 - (void)populatePotentialFriendsTableWithContacts:(NSArray *)contacts {
+    NSArray *contactUserIDs = [self convertDGTUsersToUserIDs:contacts];
     PFQuery *query = [PFQuery queryWithClassName:@"User"];
-    [query whereKey:@"UserID" containedIn:contacts];
+    [query whereKey:@"userID" containedIn:contactUserIDs];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
             [self showPopup:[error description] withTitle:@"Error querying potential friends"];
@@ -66,6 +67,14 @@
         }
         
     }];
+}
+
+- (NSArray *)convertDGTUsersToUserIDs:(NSArray *)contacts {
+    NSMutableArray *userIDs = [[NSMutableArray alloc] initWithCapacity:[contacts count]];
+    for (DGTUser *user in contacts) {
+        [userIDs addObject:user.userID];
+    }
+    return userIDs;
 }
 
 @end
