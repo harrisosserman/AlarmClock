@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 Harris Osserman. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "AlarmViewController.h"
 #import <Parse/Parse.h>
 #import <DigitsKit/DigitsKit.h>
 #import "TimePicker.h"
 #import "FriendList.h"
 #import "AddFriendsViewController.h"
 
-@interface ViewController ()
+@interface AlarmViewController ()
 @property (weak, nonatomic) IBOutlet UIPickerView *timePicker;
 @property (strong, nonatomic) NSArray *hourList;
 @property (strong, nonatomic) NSArray *minuteList;
@@ -27,7 +27,7 @@
 @property (strong, nonatomic) AddFriendsViewController *addFriendsViewController;
 @end
 
-@implementation ViewController
+@implementation AlarmViewController
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -120,15 +120,6 @@
         }
     }];
     [self updateTomorrowAlarmTime];
-}
-
-- (IBAction)addFriends:(id)sender {
-//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"AddFriends" bundle:nil];
-//    self.addFriendsViewController = (AddFriendsViewController *)[sb instantiateViewControllerWithIdentifier:@"AddFriendsViewController"];
-//    [self.navigationController pushViewController:self.addFriendsViewController animated:YES];
-//    [self presentViewController:self.addFriendsViewController animated:YES completion:nil];
-    
-    
 }
 
 @end

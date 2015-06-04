@@ -11,7 +11,7 @@
 		B62775C21B1ED6AF0052211A /* FriendList.m in Sources */ = {isa = PBXBuildFile; fileRef = B62775C11B1ED6AF0052211A /* FriendList.m */; };
 		B64E7E371B0F750C0032EC45 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B64E7E361B0F750C0032EC45 /* main.m */; };
 		B64E7E3A1B0F750C0032EC45 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B64E7E391B0F750C0032EC45 /* AppDelegate.m */; };
-		B64E7E3D1B0F750C0032EC45 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B64E7E3C1B0F750C0032EC45 /* ViewController.m */; };
+		B64E7E3D1B0F750C0032EC45 /* AlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B64E7E3C1B0F750C0032EC45 /* AlarmViewController.m */; };
 		B64E7E401B0F750C0032EC45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B64E7E3E1B0F750C0032EC45 /* Main.storyboard */; };
 		B64E7E421B0F750C0032EC45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B64E7E411B0F750C0032EC45 /* Images.xcassets */; };
 		B64E7E451B0F750C0032EC45 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64E7E431B0F750C0032EC45 /* LaunchScreen.xib */; };
@@ -62,8 +62,8 @@
 		B64E7E361B0F750C0032EC45 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B64E7E381B0F750C0032EC45 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B64E7E391B0F750C0032EC45 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B64E7E3B1B0F750C0032EC45 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B64E7E3C1B0F750C0032EC45 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B64E7E3B1B0F750C0032EC45 /* AlarmViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlarmViewController.h; sourceTree = "<group>"; };
+		B64E7E3C1B0F750C0032EC45 /* AlarmViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlarmViewController.m; sourceTree = "<group>"; };
 		B64E7E3F1B0F750C0032EC45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B64E7E411B0F750C0032EC45 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B64E7E441B0F750C0032EC45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -154,8 +154,8 @@
 			children = (
 				B64E7E381B0F750C0032EC45 /* AppDelegate.h */,
 				B64E7E391B0F750C0032EC45 /* AppDelegate.m */,
-				B64E7E3B1B0F750C0032EC45 /* ViewController.h */,
-				B64E7E3C1B0F750C0032EC45 /* ViewController.m */,
+				B64E7E3B1B0F750C0032EC45 /* AlarmViewController.h */,
+				B64E7E3C1B0F750C0032EC45 /* AlarmViewController.m */,
 				B64E7E3E1B0F750C0032EC45 /* Main.storyboard */,
 				B64E7E411B0F750C0032EC45 /* Images.xcassets */,
 				B64E7E431B0F750C0032EC45 /* LaunchScreen.xib */,
@@ -340,7 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B62775BC1B1EC7B20052211A /* TimePicker.m in Sources */,
-				B64E7E3D1B0F750C0032EC45 /* ViewController.m in Sources */,
+				B64E7E3D1B0F750C0032EC45 /* AlarmViewController.m in Sources */,
 				B64E7E3A1B0F750C0032EC45 /* AppDelegate.m in Sources */,
 				B62775C21B1ED6AF0052211A /* FriendList.m in Sources */,
 				B66130AB1B1F68FD00FD85C0 /* AddFriendsViewController.m in Sources */,
