@@ -11,6 +11,7 @@
 #import <DigitsKit/DigitsKit.h>
 #import "TimePicker.h"
 #import "FriendList.h"
+#import "AddFriendsViewController.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIPickerView *timePicker;
@@ -21,7 +22,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *friendAlarms;
 @property (strong, nonatomic) TimePicker *timePickerDelegate;
 @property (strong, nonatomic) FriendList *friendListDelegate;
-
+@property (weak, nonatomic) IBOutlet UIButton *addFriendsButton;
+@property (strong, nonatomic) UINavigationController *navigationController;
+@property (strong, nonatomic) AddFriendsViewController *addFriendsViewController;
 @end
 
 @implementation ViewController
@@ -43,6 +46,8 @@
     CGRect pickerFrame = self.timePicker.frame;
     pickerFrame.size.width = 150.f;
     [self.timePicker setFrame:pickerFrame];
+//    self.navigationController = [[UINavigationController alloc] initWithRootViewController:self];
+//    [self presentViewController:self.navigationController animated:NO completion:nil];
 }
 
 - (void)viewDidLoad {
@@ -115,6 +120,15 @@
         }
     }];
     [self updateTomorrowAlarmTime];
+}
+
+- (IBAction)addFriends:(id)sender {
+//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"AddFriends" bundle:nil];
+//    self.addFriendsViewController = (AddFriendsViewController *)[sb instantiateViewControllerWithIdentifier:@"AddFriendsViewController"];
+//    [self.navigationController pushViewController:self.addFriendsViewController animated:YES];
+//    [self presentViewController:self.addFriendsViewController animated:YES completion:nil];
+    
+    
 }
 
 @end
