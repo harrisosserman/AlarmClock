@@ -133,26 +133,10 @@
 		B64E7E281B0F750C0032EC45 = {
 			isa = PBXGroup;
 			children = (
-				B64E7E7F1B0FADA90032EC45 /* Fabric.framework */,
-				B64E7E801B0FADA90032EC45 /* DigitsKit.framework */,
-				B64E7E811B0FADA90032EC45 /* DigitsKitResources.bundle */,
-				B64E7E821B0FADA90032EC45 /* TwitterCore.framework */,
-				B64E7E741B0F84340032EC45 /* libsqlite3.dylib */,
-				B64E7E721B0F84270032EC45 /* libz.dylib */,
-				B64E7E701B0F841E0032EC45 /* SystemConfiguration.framework */,
-				B64E7E6E1B0F84160032EC45 /* StoreKit.framework */,
-				B64E7E6C1B0F840F0032EC45 /* Security.framework */,
-				B64E7E6A1B0F83FD0032EC45 /* QuartzCore.framework */,
-				B64E7E681B0F83F60032EC45 /* MobileCoreServices.framework */,
-				B64E7E661B0F83E70032EC45 /* CoreLocation.framework */,
-				B64E7E641B0F83E00032EC45 /* CoreGraphics.framework */,
-				B64E7E621B0F83DA0032EC45 /* CFNetwork.framework */,
-				B64E7E601B0F83D40032EC45 /* AudioToolbox.framework */,
-				B64E7E5A1B0F83A00032EC45 /* Parse.framework */,
+				B673447F1B20D1FE0019AC7A /* Frameworks */,
 				B64E7E331B0F750C0032EC45 /* AlarmClock */,
 				B64E7E4D1B0F750C0032EC45 /* AlarmClockTests */,
 				B64E7E321B0F750C0032EC45 /* Products */,
-				B64E7E5D1B0F83B00032EC45 /* Bolts.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -210,6 +194,30 @@
 				B64E7E4F1B0F750C0032EC45 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B673447F1B20D1FE0019AC7A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B64E7E7F1B0FADA90032EC45 /* Fabric.framework */,
+				B64E7E5D1B0F83B00032EC45 /* Bolts.framework */,
+				B64E7E801B0FADA90032EC45 /* DigitsKit.framework */,
+				B64E7E811B0FADA90032EC45 /* DigitsKitResources.bundle */,
+				B64E7E821B0FADA90032EC45 /* TwitterCore.framework */,
+				B64E7E741B0F84340032EC45 /* libsqlite3.dylib */,
+				B64E7E721B0F84270032EC45 /* libz.dylib */,
+				B64E7E701B0F841E0032EC45 /* SystemConfiguration.framework */,
+				B64E7E6E1B0F84160032EC45 /* StoreKit.framework */,
+				B64E7E6C1B0F840F0032EC45 /* Security.framework */,
+				B64E7E6A1B0F83FD0032EC45 /* QuartzCore.framework */,
+				B64E7E681B0F83F60032EC45 /* MobileCoreServices.framework */,
+				B64E7E661B0F83E70032EC45 /* CoreLocation.framework */,
+				B64E7E641B0F83E00032EC45 /* CoreGraphics.framework */,
+				B64E7E621B0F83DA0032EC45 /* CFNetwork.framework */,
+				B64E7E601B0F83D40032EC45 /* AudioToolbox.framework */,
+				B64E7E5A1B0F83A00032EC45 /* Parse.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
