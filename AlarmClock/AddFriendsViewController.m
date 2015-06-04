@@ -10,4 +10,20 @@
 
 @implementation AddFriendsViewController
 
+- (void)viewDidLoad {
+    DGTSession *userSession = [Digits sharedInstance].session;
+    DGTContacts *contacts = [[DGTContacts alloc] initWithUserSession:userSession];
+    
+    [contacts startContactsUploadWithCompletion:^(DGTContactsUploadResult *result, NSError *error) {
+        if (error) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error with contacts upload"
+                                                            message:error.description
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }];
+}
+
 @end
