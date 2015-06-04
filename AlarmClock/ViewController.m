@@ -37,7 +37,6 @@
         self.ampmList = [[NSArray alloc] initWithObjects:@"AM", @"PM", nil];
         self.timePickerDelegate = [[TimePicker alloc] initWithHourList:self.hourList andhMinuteList:self.minuteList andAmpmList:self.ampmList];
         self.friendListDelegate = [[FriendList alloc] init];
-        self.navigationController = [[UINavigationController alloc] initWithRootViewController:self];
     }
     return self;
 }
@@ -47,6 +46,8 @@
     CGRect pickerFrame = self.timePicker.frame;
     pickerFrame.size.width = 150.f;
     [self.timePicker setFrame:pickerFrame];
+//    self.navigationController = [[UINavigationController alloc] initWithRootViewController:self];
+//    [self presentViewController:self.navigationController animated:NO completion:nil];
 }
 
 - (void)viewDidLoad {
@@ -122,10 +123,10 @@
 }
 
 - (IBAction)addFriends:(id)sender {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"AddFriends" bundle:nil];
-    self.addFriendsViewController = [sb instantiateViewControllerWithIdentifier:@"AddFriendsViewController"];
-    [self.navigationController pushViewController:self.addFriendsViewController animated:YES];
-    [self presentViewController:self.addFriendsViewController animated:YES completion:nil];
+//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"AddFriends" bundle:nil];
+//    self.addFriendsViewController = (AddFriendsViewController *)[sb instantiateViewControllerWithIdentifier:@"AddFriendsViewController"];
+//    [self.navigationController pushViewController:self.addFriendsViewController animated:YES];
+//    [self presentViewController:self.addFriendsViewController animated:YES completion:nil];
     
     
 }
