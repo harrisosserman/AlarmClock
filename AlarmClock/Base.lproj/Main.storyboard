@@ -128,18 +128,8 @@
                                     <navigationItem title="Title" id="vxO-Vb-9Of"/>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELLO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08u-0i-1KB">
-                                <rect key="frame" x="133" y="80" width="55" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="08u-0i-1KB" secondAttribute="centerX" id="jdj-aJ-CIt"/>
-                            <constraint firstItem="08u-0i-1KB" firstAttribute="top" secondItem="N9Y-DM-irq" secondAttribute="bottom" constant="16" id="mYx-W7-kkP"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zlG-2S-Jq5" userLabel="First Responder" sceneMemberID="firstResponder"/>
