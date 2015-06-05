@@ -100,6 +100,11 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:potentialFriendTableCell];
     }
     cell.textLabel.text = self.potentialFriends[indexPath.row][@"phone_number"];
+    UIButton *addFriend = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    addFriend.frame = CGRectMake(150.0f, 20.0f, 100.0f, 20.0f);
+    addFriend.backgroundColor = [UIColor greenColor];
+    [addFriend setTitle:@"Add Friend" forState:UIControlStateNormal];
+    [cell addSubview:addFriend];
     return cell;
 }
 
