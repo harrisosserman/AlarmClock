@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ror-rp-cwF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -127,13 +128,34 @@
                                     <navigationItem title="Title" id="vxO-Vb-9Of"/>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Friends" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpF-kB-sj8">
+                                <rect key="frame" x="113" y="87" width="94" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TwD-Tf-Qee">
+                                <rect key="frame" x="35" y="145" width="250" height="278"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="TwD-Tf-Qee" secondAttribute="centerX" id="3H4-Ca-Ocz"/>
+                            <constraint firstItem="TwD-Tf-Qee" firstAttribute="leading" secondItem="kAu-Tw-JMh" secondAttribute="leadingMargin" constant="19" id="8Ja-C5-shY"/>
+                            <constraint firstAttribute="centerX" secondItem="qpF-kB-sj8" secondAttribute="centerX" id="8aA-oA-hl8"/>
+                            <constraint firstItem="50J-HX-5rb" firstAttribute="top" secondItem="TwD-Tf-Qee" secondAttribute="bottom" constant="145" id="Nqg-AK-Myo"/>
+                            <constraint firstItem="TwD-Tf-Qee" firstAttribute="top" secondItem="qpF-kB-sj8" secondAttribute="bottom" constant="37" id="Oov-wE-vjN"/>
+                            <constraint firstItem="qpF-kB-sj8" firstAttribute="top" secondItem="N9Y-DM-irq" secondAttribute="bottom" constant="23" id="PDd-wD-oni"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="potentialFriendsTableView" destination="TwD-Tf-Qee" id="lRp-32-Egn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zlG-2S-Jq5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-63" y="467"/>
+            <point key="canvasLocation" x="-67" y="481"/>
         </scene>
     </scenes>
 </document>

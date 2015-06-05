@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <DigitsKit/DigitsKit.h>
 
-@interface AddFriendsViewController : UIViewController
+@interface AddFriendsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @end

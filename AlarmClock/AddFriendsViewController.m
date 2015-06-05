@@ -10,9 +10,25 @@
 #import "Helpers.h"
 #import <Parse/Parse.h>
 
+@interface AddFriendsViewController()
+@property (weak, nonatomic) IBOutlet UITableView *potentialFriendsTableView;
+@property (strong, nonatomic) NSArray *potentialFriends;
+@end
+
 @implementation AddFriendsViewController
 
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.potentialFriends = [[NSArray alloc] init];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
+    self.potentialFriendsTableView.dataSource = self;
+    self.potentialFriendsTableView.delegate = self;
     [[Digits sharedInstance] authenticateWithCompletion:^(DGTSession* session, NSError *error) {
         if (error) {
             [self showPopup:[error description] withTitle:@"Error logging in"];
@@ -63,9 +79,9 @@
         if (error) {
             [self showPopup:[error description] withTitle:@"Error querying potential friends"];
         } else {
-            
+            self.potentialFriends = objects;
+            [self.potentialFriendsTableView reloadData];
         }
-        
     }];
 }
 
@@ -75,6 +91,20 @@
         [userIDs addObject:user.userID];
     }
     return userIDs;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *potentialFriendTableCell = @"potentialFriendTableCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:potentialFriendTableCell];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:potentialFriendTableCell];
+    }
+    cell.textLabel.text = self.potentialFriends[indexPath.row][@"phone_number"];
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.potentialFriends count];
 }
 
 @end
