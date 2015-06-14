@@ -103,6 +103,7 @@
             self.userFriendsParseObject = userFriends;
         }
     }];
+//  TODO: REMOVE THE ALREADY ADDED FRIENDS FROM POTENTIAL FRIENDS
 }
 
 - (NSArray *)convertDGTUsersToUserIDs:(NSArray *)contacts {

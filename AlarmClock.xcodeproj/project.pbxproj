@@ -43,6 +43,8 @@
 		B66130AB1B1F68FD00FD85C0 /* AddFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B66130AA1B1F68FD00FD85C0 /* AddFriendsViewController.m */; };
 		B690174B1B2DFCCB00198FE2 /* AddFriendTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = B690174A1B2DFCCB00198FE2 /* AddFriendTableCellView.m */; };
 		B690174D1B2DFE3800198FE2 /* AddFriendTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B690174C1B2DFE3800198FE2 /* AddFriendTableCellView.xib */; };
+		B69017521B2E20E900198FE2 /* AOS04836_Antique_Alarm_Bell_Long.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B69017511B2E20E900198FE2 /* AOS04836_Antique_Alarm_Bell_Long.mp3 */; };
+		B69017541B2E23A400198FE2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69017531B2E23A400198FE2 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,8 @@
 		B690174A1B2DFCCB00198FE2 /* AddFriendTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendTableCellView.m; sourceTree = "<group>"; };
 		B690174C1B2DFE3800198FE2 /* AddFriendTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFriendTableCellView.xib; sourceTree = "<group>"; };
 		B690174F1B2E0A1700198FE2 /* AddFriendDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddFriendDelegate.h; sourceTree = "<group>"; };
+		B69017511B2E20E900198FE2 /* AOS04836_Antique_Alarm_Bell_Long.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AOS04836_Antique_Alarm_Bell_Long.mp3; sourceTree = "<group>"; };
+		B69017531B2E23A400198FE2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B69017541B2E23A400198FE2 /* AVFoundation.framework in Frameworks */,
 				B64E7E751B0F84340032EC45 /* libsqlite3.dylib in Frameworks */,
 				B64E7E731B0F84270032EC45 /* libz.dylib in Frameworks */,
 				B64E7E711B0F841E0032EC45 /* SystemConfiguration.framework in Frameworks */,
@@ -142,6 +147,7 @@
 		B64E7E281B0F750C0032EC45 = {
 			isa = PBXGroup;
 			children = (
+				B69017501B2E20D100198FE2 /* Sounds */,
 				B673447F1B20D1FE0019AC7A /* Frameworks */,
 				B64E7E331B0F750C0032EC45 /* AlarmClock */,
 				B64E7E4D1B0F750C0032EC45 /* AlarmClockTests */,
@@ -214,6 +220,7 @@
 		B673447F1B20D1FE0019AC7A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B69017531B2E23A400198FE2 /* AVFoundation.framework */,
 				B64E7E7F1B0FADA90032EC45 /* Fabric.framework */,
 				B64E7E5D1B0F83B00032EC45 /* Bolts.framework */,
 				B64E7E801B0FADA90032EC45 /* DigitsKit.framework */,
@@ -233,6 +240,14 @@
 				B64E7E5A1B0F83A00032EC45 /* Parse.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B69017501B2E20D100198FE2 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				B69017511B2E20E900198FE2 /* AOS04836_Antique_Alarm_Bell_Long.mp3 */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,6 +336,7 @@
 				B64E7E451B0F750C0032EC45 /* LaunchScreen.xib in Resources */,
 				B64E7E421B0F750C0032EC45 /* Images.xcassets in Resources */,
 				B690174D1B2DFE3800198FE2 /* AddFriendTableCellView.xib in Resources */,
+				B69017521B2E20E900198FE2 /* AOS04836_Antique_Alarm_Bell_Long.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

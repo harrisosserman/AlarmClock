@@ -13,6 +13,7 @@
 #import "FriendList.h"
 #import "AddFriendsViewController.h"
 #import "Helpers.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface AlarmViewController ()
 @property (weak, nonatomic) IBOutlet UIPickerView *timePicker;
@@ -26,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *addFriendsButton;
 @property (strong, nonatomic) UINavigationController *navigationController;
 @property (strong, nonatomic) AddFriendsViewController *addFriendsViewController;
+@property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @end
 
 @implementation AlarmViewController
@@ -68,6 +70,11 @@
             self.tomorrowAlarmTime.text = @"Not Set Yet";
         }
     }];
+    NSString *path = [NSString stringWithFormat:@"%@/AOS04836_Antique_Alarm_Bell_Long.mp3", [[NSBundle mainBundle] resourcePath]];
+    NSURL *soundUrl = [NSURL fileURLWithPath:path];
+//    NSURL *soundUrl = [NSURL fileURLWithPath:@"Sounds/AOS04836_Antique_Alarm_Bell_Long.mp3"];
+    NSError *audioError;
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundUrl error:&audioError];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -120,6 +127,8 @@
         }
     }];
     [self updateTomorrowAlarmTime];
+    [self.audioPlayer play];
+    
 }
 
 @end
