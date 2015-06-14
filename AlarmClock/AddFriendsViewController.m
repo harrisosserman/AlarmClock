@@ -14,15 +14,18 @@
 @interface AddFriendsViewController()
 @property (weak, nonatomic) IBOutlet UITableView *potentialFriendsTableView;
 @property (strong, nonatomic) NSArray *potentialFriends;
+@property (strong, nonatomic) NSMutableArray *currentFriends;
+@property (strong, nonatomic) PFObject *userFriendsParseObject;
 @end
 
 @implementation AddFriendsViewController
 
 
-- (id)init {
-    self = [super init];
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
     if (self) {
         self.potentialFriends = [[NSArray alloc] init];
+        self.currentFriends = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -84,6 +87,22 @@
             [self.potentialFriendsTableView reloadData];
         }
     }];
+    PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friends"];
+    [friendQuery whereKey:@"phone_number" equalTo:[[[Digits sharedInstance] session] phoneNumber]];
+    [friendQuery getFirstObjectInBackgroundWithBlock:^(PFObject *userFriends, NSError *error) {
+        if (userFriends) {
+            [self.currentFriends addObjectsFromArray:(NSArray *)userFriends[@"friends"]];
+            self.userFriendsParseObject = userFriends;
+        } else if(error.code != 101) {
+//            error code 101 means that the user has no friends
+            [self showPopup:[error description] withTitle:@"Error querying potential friends"];
+        } else {
+            userFriends = [PFObject objectWithClassName:@"Friends"];
+            userFriends[@"phone_number"] = [[[Digits sharedInstance] session] phoneNumber];
+            userFriends[@"friends"] = @[];
+            self.userFriendsParseObject = userFriends;
+        }
+    }];
 }
 
 - (NSArray *)convertDGTUsersToUserIDs:(NSArray *)contacts {
@@ -102,11 +121,19 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"potentialFriendTableCell"];
     }
     [cell setPhoneNumber:self.potentialFriends[indexPath.row][@"phone_number"]];
+    cell.delegate = self;
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.potentialFriends count];
 }
+
+- (void)addFriend:(NSString *)phoneNumber {
+    [self.currentFriends addObject:phoneNumber];
+    self.userFriendsParseObject[@"friends"] = [self.currentFriends copy];
+    [self.userFriendsParseObject saveInBackground];
+}
+
 
 @end

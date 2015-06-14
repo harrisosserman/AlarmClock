@@ -97,6 +97,7 @@
 		B69017491B2DFCCB00198FE2 /* AddFriendTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendTableCellView.h; sourceTree = "<group>"; };
 		B690174A1B2DFCCB00198FE2 /* AddFriendTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendTableCellView.m; sourceTree = "<group>"; };
 		B690174C1B2DFE3800198FE2 /* AddFriendTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFriendTableCellView.xib; sourceTree = "<group>"; };
+		B690174F1B2E0A1700198FE2 /* AddFriendDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddFriendDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +180,7 @@
 				B69017491B2DFCCB00198FE2 /* AddFriendTableCellView.h */,
 				B690174A1B2DFCCB00198FE2 /* AddFriendTableCellView.m */,
 				B690174C1B2DFE3800198FE2 /* AddFriendTableCellView.xib */,
+				B690174F1B2E0A1700198FE2 /* AddFriendDelegate.h */,
 			);
 			path = AlarmClock;
 			sourceTree = "<group>";

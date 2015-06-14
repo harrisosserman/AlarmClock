@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <DigitsKit/DigitsKit.h>
+#import "AddFriendDelegate.h"
 
-@interface AddFriendsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface AddFriendsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, AddFriendDelegate>
 
 @end

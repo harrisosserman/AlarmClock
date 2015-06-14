@@ -7,11 +7,10 @@
 //
 
 #import "AddFriendTableCellView.h"
+#import <Parse/Parse.h>
 
 @interface AddFriendTableCellView()
 @property (weak, nonatomic) IBOutlet UILabel *phoneNumberLabel;
-
-
 @end
 
 @implementation AddFriendTableCellView
@@ -29,7 +28,7 @@
     self.phoneNumberLabel.text = phoneNumber;
 }
 - (IBAction)addFriend:(id)sender {
-    
+    [self.delegate addFriend:self.phoneNumberLabel.text];
 }
 
 @end

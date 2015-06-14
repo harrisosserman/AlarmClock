@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AddFriendDelegate.h"
 @interface AddFriendTableCellView : UITableViewCell
+@property (weak, nonatomic) id<AddFriendDelegate> delegate;
 -(void)setPhoneNumber:(NSString *)phoneNumber;
 
 @end
