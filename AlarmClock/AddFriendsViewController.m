@@ -9,6 +9,7 @@
 #import "AddFriendsViewController.h"
 #import "Helpers.h"
 #import <Parse/Parse.h>
+#import "AddFriendTableCellView.h"
 
 @interface AddFriendsViewController()
 @property (weak, nonatomic) IBOutlet UITableView *potentialFriendsTableView;
@@ -95,16 +96,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *potentialFriendTableCell = @"potentialFriendTableCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:potentialFriendTableCell];
+    AddFriendTableCellView *cell = [tableView dequeueReusableCellWithIdentifier:potentialFriendTableCell];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:potentialFriendTableCell];
+        [tableView registerNib:[UINib nibWithNibName:@"AddFriendTableCellView" bundle:nil] forCellReuseIdentifier:@"potentialFriendTableCell"];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"potentialFriendTableCell"];
     }
-    cell.textLabel.text = self.potentialFriends[indexPath.row][@"phone_number"];
-    UIButton *addFriend = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    addFriend.frame = CGRectMake(150.0f, 20.0f, 100.0f, 20.0f);
-    addFriend.backgroundColor = [UIColor greenColor];
-    [addFriend setTitle:@"Add Friend" forState:UIControlStateNormal];
-    [cell addSubview:addFriend];
+    [cell setPhoneNumber:self.potentialFriends[indexPath.row][@"phone_number"]];
     return cell;
 }
 

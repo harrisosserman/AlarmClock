@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddFriendTableCellViewTableViewCell : UITableViewCell
+@interface AddFriendTableCellView : UITableViewCell
+-(void)setPhoneNumber:(NSString *)phoneNumber;
 
 @end

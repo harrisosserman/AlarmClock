@@ -6,9 +6,15 @@
 //  Copyright (c) 2015 Harris Osserman. All rights reserved.
 //
 
-#import "AddFriendTableCellViewTableViewCell.h"
+#import "AddFriendTableCellView.h"
 
-@implementation AddFriendTableCellViewTableViewCell
+@interface AddFriendTableCellView()
+@property (weak, nonatomic) IBOutlet UILabel *phoneNumberLabel;
+
+
+@end
+
+@implementation AddFriendTableCellView
 
 - (void)awakeFromNib {
     // Initialization code
@@ -18,6 +24,12 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+- (void)setPhoneNumber:(NSString *)phoneNumber {
+    self.phoneNumberLabel.text = phoneNumber;
+}
+- (IBAction)addFriend:(id)sender {
+    
 }
 
 @end
