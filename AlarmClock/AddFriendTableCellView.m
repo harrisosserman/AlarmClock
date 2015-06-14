@@ -28,7 +28,7 @@
     self.phoneNumberLabel.text = phoneNumber;
 }
 - (IBAction)addFriend:(id)sender {
-    [self.delegate addFriend:self.phoneNumberLabel.text];
+    [self.delegate addFriendAtIndex:self.index];
 }
 
 @end

@@ -7,5 +7,5 @@
 //
 
 @protocol AddFriendDelegate <NSObject>
-- (void)addFriend:(NSString *)phoneNumber;
+- (void)addFriendAtIndex: (NSInteger)index;
 @end

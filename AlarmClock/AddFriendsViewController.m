@@ -13,7 +13,7 @@
 
 @interface AddFriendsViewController()
 @property (weak, nonatomic) IBOutlet UITableView *potentialFriendsTableView;
-@property (strong, nonatomic) NSArray *potentialFriends;
+@property (strong, nonatomic) NSMutableArray *potentialFriends;
 @property (strong, nonatomic) NSMutableArray *currentFriends;
 @property (strong, nonatomic) PFObject *userFriendsParseObject;
 @end
@@ -24,7 +24,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.potentialFriends = [[NSArray alloc] init];
+        self.potentialFriends = [[NSMutableArray alloc] init];
         self.currentFriends = [[NSMutableArray alloc] init];
     }
     return self;
@@ -83,7 +83,7 @@
         if (error) {
             [self showPopup:[error description] withTitle:@"Error querying potential friends"];
         } else {
-            self.potentialFriends = objects;
+            [self.potentialFriends addObjectsFromArray:objects];
             [self.potentialFriendsTableView reloadData];
         }
     }];
@@ -122,6 +122,7 @@
     }
     [cell setPhoneNumber:self.potentialFriends[indexPath.row][@"phone_number"]];
     cell.delegate = self;
+    cell.index = indexPath.row;
     return cell;
 }
 
@@ -129,10 +130,12 @@
     return [self.potentialFriends count];
 }
 
-- (void)addFriend:(NSString *)phoneNumber {
-    [self.currentFriends addObject:phoneNumber];
+- (void)addFriendAtIndex:(NSInteger)index {
+    [self.currentFriends addObject:self.potentialFriends[index][@"phone_number"]];
     self.userFriendsParseObject[@"friends"] = [self.currentFriends copy];
     [self.userFriendsParseObject saveInBackground];
+    [self.potentialFriends removeObjectAtIndex:index];
+    [self.potentialFriendsTableView reloadData];
 }
 
 

@@ -10,6 +10,7 @@
 #import "AddFriendDelegate.h"
 @interface AddFriendTableCellView : UITableViewCell
 @property (weak, nonatomic) id<AddFriendDelegate> delegate;
+@property (nonatomic) NSInteger index;
 -(void)setPhoneNumber:(NSString *)phoneNumber;
 
 @end
