@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
 @interface Helpers : NSObject
 + (void)saveUserWithPhoneNumber:(NSString *)phoneNumber andUserID:(NSString *)userID;
++ (NSInteger)convertToMilitaryTime:(PFObject *)parseObject;
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "Helpers.h"
-#import <Parse/Parse.h>
 
 @implementation Helpers
 
@@ -25,5 +24,10 @@
             [userObject saveInBackground];
         }
     }];
+}
++ (NSInteger)convertToMilitaryTime:(PFObject *)parseObject {
+    NSString *ampm = parseObject[@"ampm"];
+    NSInteger hour = [parseObject[@"hour"] integerValue];
+    return ([ampm isEqualToString:@"am"] ? hour : 12 + hour);
 }
 @end

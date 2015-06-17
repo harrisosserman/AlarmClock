@@ -28,6 +28,7 @@
 @property (strong, nonatomic) UINavigationController *navigationController;
 @property (strong, nonatomic) AddFriendsViewController *addFriendsViewController;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
+@property (strong, nonatomic) PFObject *wakeTime;
 @end
 
 @implementation AlarmViewController
@@ -66,6 +67,7 @@
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *wakeTime, NSError *error) {
         if (wakeTime) {
             self.tomorrowAlarmTime.text = [NSString stringWithFormat:@"%@:%@ %@", wakeTime[@"hour"], wakeTime[@"minute"], wakeTime[@"ampm"]];
+            self.wakeTime = wakeTime;
         } else if(error) {
             self.tomorrowAlarmTime.text = @"Not Set Yet";
         }
@@ -120,6 +122,7 @@
                     userWakeTime[@"phone_number"] = phoneNumber;
                     [userWakeTime saveInBackground];
                 }
+                self.wakeTime = userWakeTime;
             }];
             [self.friendAlarms reloadData];
         } else {
@@ -128,6 +131,32 @@
     }];
     [self updateTomorrowAlarmTime];
     [self.audioPlayer play];
+    __block UIBackgroundTaskIdentifier bgtask;
+    bgtask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        [[UIApplication sharedApplication] endBackgroundTask:bgtask];
+        bgtask = UIBackgroundTaskInvalid;
+    }];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSDate *now = [NSDate date];
+        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+        NSDateComponents *alarmTimeComponents = [gregorian components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitDay) fromDate:now];
+        [alarmTimeComponents setHour: [Helpers convertToMilitaryTime:self.wakeTime]];
+        [alarmTimeComponents setMinute:[self.wakeTime[@"minute"] integerValue]];
+        if ([[gregorian dateFromComponents:alarmTimeComponents] compare:now] != NSOrderedDescending) {
+            [alarmTimeComponents setDay: [alarmTimeComponents day] + 1];
+        }
+        NSDate *alarmTime = [gregorian dateFromComponents:alarmTimeComponents];
+        
+        [NSTimer scheduledTimerWithTimeInterval:0.5f
+                                         target:self
+                                       selector: @selector(doSomething:)
+                                       userInfo:nil
+                                        repeats:NO];
+        
+        [[UIApplication sharedApplication] endBackgroundTask:bgtask];
+        bgtask = UIBackgroundTaskInvalid;
+    });
     
 }
 
