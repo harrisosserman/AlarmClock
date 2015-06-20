@@ -29,6 +29,7 @@
 @property (strong, nonatomic) AddFriendsViewController *addFriendsViewController;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (strong, nonatomic) PFObject *wakeTime;
+@property (nonatomic) UIBackgroundTaskIdentifier backgroundTask;
 @end
 
 @implementation AlarmViewController
@@ -104,6 +105,43 @@
     self.tomorrowAlarmTime.text = [NSString stringWithFormat:@"%@:%@ %@", wakeTime[@"hour"], wakeTime[@"minute"], wakeTime[@"ampm"]];
 }
 
+- (void)endBackgroundTask {
+    [[UIApplication sharedApplication] endBackgroundTask:self.backgroundTask];
+    self.backgroundTask = UIBackgroundTaskInvalid;
+}
+
+- (void)setAlarmBackgroundTask {
+    self.backgroundTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        [[UIApplication sharedApplication] endBackgroundTask:self.backgroundTask];
+        self.backgroundTask = UIBackgroundTaskInvalid;
+    }];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSDate *now = [NSDate date];
+        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+        NSDateComponents *alarmTimeComponents = [gregorian components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitDay) fromDate:now];
+        [alarmTimeComponents setHour: [Helpers convertToMilitaryTime:self.wakeTime]];
+        [alarmTimeComponents setMinute:[self.wakeTime[@"minute"] integerValue]];
+        if ([[gregorian dateFromComponents:alarmTimeComponents] compare:now] != NSOrderedDescending) {
+            [alarmTimeComponents setDay: [alarmTimeComponents day] + 1];
+        }
+        NSDate *alarmTime = [gregorian dateFromComponents:alarmTimeComponents];
+        
+        NSTimeInterval interval = [alarmTime timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970];
+        
+        [NSTimer scheduledTimerWithTimeInterval:interval
+                                         target:self
+                                       selector:@selector(playAlarm)
+                                       userInfo:nil
+                                        repeats:NO];
+    });
+}
+
+- (void)playAlarm {
+    [self endBackgroundTask];
+    [self.audioPlayer play];
+}
+
 - (IBAction)submitButton:(id)sender {
     __block NSString *phoneNumber = @"";
     [[Digits sharedInstance] authenticateWithCompletion:^(DGTSession* session, NSError *error) {
@@ -130,34 +168,8 @@
         }
     }];
     [self updateTomorrowAlarmTime];
-    [self.audioPlayer play];
-    __block UIBackgroundTaskIdentifier bgtask;
-    bgtask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-        [[UIApplication sharedApplication] endBackgroundTask:bgtask];
-        bgtask = UIBackgroundTaskInvalid;
-    }];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSDate *now = [NSDate date];
-        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-        NSDateComponents *alarmTimeComponents = [gregorian components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitDay) fromDate:now];
-        [alarmTimeComponents setHour: [Helpers convertToMilitaryTime:self.wakeTime]];
-        [alarmTimeComponents setMinute:[self.wakeTime[@"minute"] integerValue]];
-        if ([[gregorian dateFromComponents:alarmTimeComponents] compare:now] != NSOrderedDescending) {
-            [alarmTimeComponents setDay: [alarmTimeComponents day] + 1];
-        }
-        NSDate *alarmTime = [gregorian dateFromComponents:alarmTimeComponents];
-        
-        [NSTimer scheduledTimerWithTimeInterval:0.5f
-                                         target:self
-                                       selector: @selector(doSomething:)
-                                       userInfo:nil
-                                        repeats:NO];
-        
-        [[UIApplication sharedApplication] endBackgroundTask:bgtask];
-        bgtask = UIBackgroundTaskInvalid;
-    });
-    
+    [self endBackgroundTask];
+    [self setAlarmBackgroundTask];
 }
 
 @end
