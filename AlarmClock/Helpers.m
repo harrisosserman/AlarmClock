@@ -28,6 +28,6 @@
 + (NSInteger)convertToMilitaryTime:(PFObject *)parseObject {
     NSString *ampm = parseObject[@"ampm"];
     NSInteger hour = [parseObject[@"hour"] integerValue];
-    return ([ampm isEqualToString:@"am"] ? hour : 12 + hour);
+    return ([ampm isEqualToString:@"AM"] ? hour : 12 + hour);
 }
 @end

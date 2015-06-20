@@ -119,7 +119,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSDate *now = [NSDate date];
         NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-        NSDateComponents *alarmTimeComponents = [gregorian components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitDay) fromDate:now];
+        NSDateComponents *alarmTimeComponents = [gregorian components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitDay | NSCalendarUnitYear | NSCalendarUnitMonth) fromDate:now];
         [alarmTimeComponents setHour: [Helpers convertToMilitaryTime:self.wakeTime]];
         [alarmTimeComponents setMinute:[self.wakeTime[@"minute"] integerValue]];
         if ([[gregorian dateFromComponents:alarmTimeComponents] compare:now] != NSOrderedDescending) {
