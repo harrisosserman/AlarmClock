@@ -75,6 +75,18 @@
     [alert show];
 }
 
+- (NSMutableArray *)removeAlreadyAddedFriends {
+    NSMutableArray *potentialFriends = [[NSMutableArray alloc] initWithCapacity:[self.potentialFriends count]];
+    for (PFObject *potentialFriend in self.potentialFriends) {
+        if ([self.userFriendsParseObject[@"friends"] containsObject:potentialFriend[@"phone_number"]]) {
+            continue;
+        } else {
+            [potentialFriends addObject:potentialFriend];
+        }
+    }
+    return potentialFriends;
+}
+
 - (void)populatePotentialFriendsTableWithContacts:(NSArray *)contacts {
     NSArray *contactUserIDs = [self convertDGTUsersToUserIDs:contacts];
     PFQuery *query = [PFQuery queryWithClassName:@"User"];
@@ -84,7 +96,6 @@
             [self showPopup:[error description] withTitle:@"Error querying potential friends"];
         } else {
             [self.potentialFriends addObjectsFromArray:objects];
-            [self.potentialFriendsTableView reloadData];
         }
     }];
     PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friends"];
@@ -93,6 +104,7 @@
         if (userFriends) {
             [self.currentFriends addObjectsFromArray:(NSArray *)userFriends[@"friends"]];
             self.userFriendsParseObject = userFriends;
+            self.potentialFriends = [self removeAlreadyAddedFriends];
         } else if(error.code != 101) {
 //            error code 101 means that the user has no friends
             [self showPopup:[error description] withTitle:@"Error querying potential friends"];
@@ -103,7 +115,7 @@
             self.userFriendsParseObject = userFriends;
         }
     }];
-//  TODO: REMOVE THE ALREADY ADDED FRIENDS FROM POTENTIAL FRIENDS
+    [self.potentialFriendsTableView reloadData];
 }
 
 - (NSArray *)convertDGTUsersToUserIDs:(NSArray *)contacts {
