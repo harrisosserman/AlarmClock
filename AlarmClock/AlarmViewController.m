@@ -105,7 +105,7 @@
     self.tomorrowAlarmTime.text = [NSString stringWithFormat:@"%@:%@ %@", wakeTime[@"hour"], wakeTime[@"minute"], wakeTime[@"ampm"]];
 }
 
-- (void)endBackgroundTask {
+- (void)endLocalNotification {
     UIApplication* app = [UIApplication sharedApplication];
     NSArray* oldNotifications = [app scheduledLocalNotifications];
     
@@ -128,8 +128,8 @@
     }
     NSDate *alarmTime = [gregorian dateFromComponents:alarmTimeComponents];
     
-//    NSTimeInterval interval = [alarmTime timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970];
-    
+//    set interval as the number of seconds until the next alarm
+    NSTimeInterval interval = 24 * 60 * 60;
     
     // Create a new notification.
     UILocalNotification* alarm = [[UILocalNotification alloc] init];
@@ -137,16 +137,11 @@
     {
         alarm.fireDate = alarmTime;
         alarm.timeZone = [NSTimeZone localTimeZone];
-        alarm.repeatInterval = 0;
+        alarm.repeatInterval = interval;
         alarm.soundName = @"AOS04836_Antique_Alarm_Bell_Long.mp3";
         alarm.alertBody = @"Time to wake up!";
         [[UIApplication sharedApplication] scheduleLocalNotification:alarm];
     }
-}
-
-- (void)playAlarm {
-    [self endBackgroundTask];
-    [self.audioPlayer play];
 }
 
 - (IBAction)submitButton:(id)sender {
@@ -169,7 +164,7 @@
                 }
                 self.wakeTime = userWakeTime;
                 [self updateTomorrowAlarmTime];
-                [self endBackgroundTask];
+                [self endLocalNotification];
                 [self setAlarmNotification];
             }];
             [self.friendAlarms reloadData];
