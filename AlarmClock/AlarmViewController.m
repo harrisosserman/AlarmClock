@@ -73,11 +73,11 @@
             self.tomorrowAlarmTime.text = @"Not Set Yet";
         }
     }];
-    NSString *path = [NSString stringWithFormat:@"%@/AOS04836_Antique_Alarm_Bell_Long.mp3", [[NSBundle mainBundle] resourcePath]];
-    NSURL *soundUrl = [NSURL fileURLWithPath:path];
-//    NSURL *soundUrl = [NSURL fileURLWithPath:@"Sounds/AOS04836_Antique_Alarm_Bell_Long.mp3"];
-    NSError *audioError;
-    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundUrl error:&audioError];
+//    NSString *path = [NSString stringWithFormat:@"%@/AOS04836_Antique_Alarm_Bell_Long.mp3", [[NSBundle mainBundle] resourcePath]];
+//    NSURL *soundUrl = [NSURL fileURLWithPath:path];
+////    NSURL *soundUrl = [NSURL fileURLWithPath:@"Sounds/AOS04836_Antique_Alarm_Bell_Long.mp3"];
+//    NSError *audioError;
+//    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundUrl error:&audioError];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -106,37 +106,42 @@
 }
 
 - (void)endBackgroundTask {
-    [[UIApplication sharedApplication] endBackgroundTask:self.backgroundTask];
-    self.backgroundTask = UIBackgroundTaskInvalid;
+    UIApplication* app = [UIApplication sharedApplication];
+    NSArray* oldNotifications = [app scheduledLocalNotifications];
+    
+    // Clear out the old notification before scheduling a new one.
+    if ([oldNotifications count] > 0)
+        [app cancelAllLocalNotifications];
 }
 
-- (void)setAlarmBackgroundTask {
-    self.backgroundTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-        [[UIApplication sharedApplication] endBackgroundTask:self.backgroundTask];
-        self.backgroundTask = UIBackgroundTaskInvalid;
-    }];
+- (void)setAlarmNotification {
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSDate *now = [NSDate date];
-        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-        [gregorian setTimeZone:[NSTimeZone localTimeZone]];
-        NSDateComponents *alarmTimeComponents = [gregorian components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitDay | NSCalendarUnitYear | NSCalendarUnitMonth ) fromDate:now];
-        [alarmTimeComponents setTimeZone: [NSTimeZone localTimeZone]];
-        [alarmTimeComponents setHour: [Helpers convertToMilitaryTime:self.wakeTime]];
-        [alarmTimeComponents setMinute:[self.wakeTime[@"minute"] integerValue]];
-        if ([[gregorian dateFromComponents:alarmTimeComponents] compare:now] != NSOrderedDescending) {
-            [alarmTimeComponents setDay: [alarmTimeComponents day] + 1];
-        }
-        NSDate *alarmTime = [gregorian dateFromComponents:alarmTimeComponents];
-        
-        NSTimeInterval interval = [alarmTime timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970];
-        
-        [NSTimer scheduledTimerWithTimeInterval:interval
-                                         target:self
-                                       selector:@selector(playAlarm)
-                                       userInfo:nil
-                                        repeats:NO];
-    });
+    NSDate *now = [NSDate date];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    [gregorian setTimeZone:[NSTimeZone localTimeZone]];
+    NSDateComponents *alarmTimeComponents = [gregorian components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitDay | NSCalendarUnitYear | NSCalendarUnitMonth ) fromDate:now];
+    [alarmTimeComponents setTimeZone: [NSTimeZone localTimeZone]];
+    [alarmTimeComponents setHour: [Helpers convertToMilitaryTime:self.wakeTime]];
+    [alarmTimeComponents setMinute:[self.wakeTime[@"minute"] integerValue]];
+    if ([[gregorian dateFromComponents:alarmTimeComponents] compare:now] != NSOrderedDescending) {
+        [alarmTimeComponents setDay: [alarmTimeComponents day] + 1];
+    }
+    NSDate *alarmTime = [gregorian dateFromComponents:alarmTimeComponents];
+    
+//    NSTimeInterval interval = [alarmTime timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970];
+    
+    
+    // Create a new notification.
+    UILocalNotification* alarm = [[UILocalNotification alloc] init];
+    if (alarm)
+    {
+        alarm.fireDate = alarmTime;
+        alarm.timeZone = [NSTimeZone localTimeZone];
+        alarm.repeatInterval = 0;
+        alarm.soundName = @"AOS04836_Antique_Alarm_Bell_Long.mp3";
+        alarm.alertBody = @"Time to wake up!";
+        [[UIApplication sharedApplication] scheduleLocalNotification:alarm];
+    }
 }
 
 - (void)playAlarm {
@@ -165,7 +170,7 @@
                 self.wakeTime = userWakeTime;
                 [self updateTomorrowAlarmTime];
                 [self endBackgroundTask];
-                [self setAlarmBackgroundTask];
+                [self setAlarmNotification];
             }];
             [self.friendAlarms reloadData];
         } else {
