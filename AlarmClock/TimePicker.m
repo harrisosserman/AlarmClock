@@ -64,4 +64,15 @@
     return 50.f;
 }
 
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+    UILabel* tView = (UILabel*)view;
+    if (!tView){
+        tView = [[UILabel alloc] init];
+        
+
+    }
+    // Fill the label text here
+    return tView;
+}
+
 @end

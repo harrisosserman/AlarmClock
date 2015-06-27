@@ -31,6 +31,7 @@
 }
 
 - (void)viewDidLoad {
+    [self.view setBackgroundColor:[UIColor blackColor]];
     self.potentialFriendsTableView.dataSource = self;
     self.potentialFriendsTableView.delegate = self;
     [[Digits sharedInstance] authenticateWithCompletion:^(DGTSession* session, NSError *error) {

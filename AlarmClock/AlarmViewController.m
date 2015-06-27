@@ -55,6 +55,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view setBackgroundColor:[UIColor blackColor]];
     self.timePicker.delegate = self.timePickerDelegate;
     self.timePicker.dataSource = self.timePickerDelegate;
     self.friendAlarms.delegate = self.friendListDelegate;
