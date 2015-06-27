@@ -45,6 +45,7 @@
 		B690174D1B2DFE3800198FE2 /* AddFriendTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B690174C1B2DFE3800198FE2 /* AddFriendTableCellView.xib */; };
 		B69017521B2E20E900198FE2 /* AOS04836_Antique_Alarm_Bell_Long.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B69017511B2E20E900198FE2 /* AOS04836_Antique_Alarm_Bell_Long.mp3 */; };
 		B69017541B2E23A400198FE2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69017531B2E23A400198FE2 /* AVFoundation.framework */; };
+		B6F9EF531B3F5D0900A4B181 /* alarm_clock_logo_crop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B6F9EF521B3F5D0900A4B181 /* alarm_clock_logo_crop.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		B690174F1B2E0A1700198FE2 /* AddFriendDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddFriendDelegate.h; sourceTree = "<group>"; };
 		B69017511B2E20E900198FE2 /* AOS04836_Antique_Alarm_Bell_Long.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AOS04836_Antique_Alarm_Bell_Long.mp3; sourceTree = "<group>"; };
 		B69017531B2E23A400198FE2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B6F9EF521B3F5D0900A4B181 /* alarm_clock_logo_crop.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = alarm_clock_logo_crop.jpg; path = ../../Desktop/alarm_clock_logo_crop.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 		B64E7E281B0F750C0032EC45 = {
 			isa = PBXGroup;
 			children = (
+				B6F9EF511B3F5CDB00A4B181 /* Images */,
 				B69017501B2E20D100198FE2 /* Sounds */,
 				B673447F1B20D1FE0019AC7A /* Frameworks */,
 				B64E7E331B0F750C0032EC45 /* AlarmClock */,
@@ -250,6 +253,14 @@
 			name = Sounds;
 			sourceTree = "<group>";
 		};
+		B6F9EF511B3F5CDB00A4B181 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B6F9EF521B3F5D0900A4B181 /* alarm_clock_logo_crop.jpg */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -331,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6F9EF531B3F5D0900A4B181 /* alarm_clock_logo_crop.jpg in Resources */,
 				B64E7E871B0FADA90032EC45 /* DigitsKitResources.bundle in Resources */,
 				B64E7E401B0F750C0032EC45 /* Main.storyboard in Resources */,
 				B64E7E451B0F750C0032EC45 /* LaunchScreen.xib in Resources */,
