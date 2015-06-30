@@ -11,21 +11,29 @@
 @implementation FriendList
 
 - (NSArray *)findFriendAlarmTimes {
-    //    for now, this just returns all other alarm time objects
     if ([[Digits sharedInstance] session] == nil) {
         return nil;
     }
-    __block NSArray *alarmTimes;
     NSError *queryError;
-    PFQuery *query = [PFQuery queryWithClassName:@"AlarmTime"];
-    [query whereKey:@"phone_number" notEqualTo:[[[Digits sharedInstance] session] phoneNumber]];
-    NSArray *wakeTimes = [query findObjects:&queryError];
-    if (wakeTimes) {
-        alarmTimes = wakeTimes;
-    } else if(queryError) {
-        alarmTimes = nil;
+    PFQuery *query = [PFQuery queryWithClassName:@"Friends"];
+    [query whereKey:@"phone_number" equalTo:[[[Digits sharedInstance] session] phoneNumber]];
+    PFObject *queryResult = [query getFirstObject:&queryError];
+    if (queryError) {
+        return nil;
+    } else if (!queryResult) {
+        return nil;
     }
-    return alarmTimes;
+    NSMutableArray *friends = [[NSMutableArray alloc] init];
+    query = [PFQuery queryWithClassName:@"AlarmTime"];
+    for (NSString *phoneNumber in queryResult[@"friends"]) {
+        [query whereKey:@"phone_number" equalTo:phoneNumber];
+        queryResult = [query getFirstObject:&queryError];
+        if (queryResult) {
+            [friends addObject:queryResult];
+        }
+    }
+    
+    return friends;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
