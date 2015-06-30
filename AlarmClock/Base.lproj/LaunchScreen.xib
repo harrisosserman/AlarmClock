@@ -10,11 +10,15 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="alarm_clock_logo_crop.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ZVN-Fj-Abx">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="alarm_clock_logo_crop.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ZVN-Fj-Abx">
                     <rect key="frame" x="0.0" y="44" width="480" height="392"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.35686274509803922" green="0.76078431372549016" blue="0.7686274509803922" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="ZVN-Fj-Abx" secondAttribute="centerX" id="QfH-I0-476"/>
+                <constraint firstAttribute="centerY" secondItem="ZVN-Fj-Abx" secondAttribute="centerY" id="ikh-nK-VQW"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="548" y="455"/>
